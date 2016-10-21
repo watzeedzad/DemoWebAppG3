@@ -60,6 +60,10 @@
         <servlet-name>Page1Servlet</servlet-name>
         <servlet-class>sit.int303.demo.controller.Page1Servlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SearchProductServlet</servlet-name>
+        <servlet-class>sit.int303.demo.controller.SearchProductServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HiLowServlet</servlet-name>
         <url-pattern>/HiLow</url-pattern>
@@ -104,6 +108,10 @@
     <servlet-mapping>
         <servlet-name>Page1Servlet</servlet-name>
         <url-pattern>/Page1</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchProductServlet</servlet-name>
+        <url-pattern>/SearchProduct</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

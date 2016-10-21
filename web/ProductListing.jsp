@@ -19,8 +19,8 @@
         <jsp:include page="WEB-INF/jsp/Header.jsp?title=Product Listing"/>
         <br>
         <%
-            List<Product> products = Product.findByName("");
-            pageContext.setAttribute("products", products);
+            //List<Product> products = Product.findByPrice(100, 200);
+            //pageContext.setAttribute("products", products);
         %>
     </body>
     <c:if test="${products != null}">

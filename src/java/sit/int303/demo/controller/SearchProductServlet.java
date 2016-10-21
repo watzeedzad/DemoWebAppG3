@@ -44,7 +44,9 @@ public class SearchProductServlet extends HttpServlet {
                     double upper = Double.parseDouble(searchText2);
                     List<Product> products = Product.findByPrice(lower, upper);
                     if (products == null) {
-                        request.setAttribute("message", "Products for specific price does not exist !!");
+                        request.setAttribute("message", "Products price between "+lower+" and "+upper+" does not exist !!");
+                    } else {
+                        request.getSession().setAttribute("products", products);
                     }
                     request.getSession().setAttribute("products", products); // put products to session scope
                 } catch (Exception e) {
@@ -53,7 +55,7 @@ public class SearchProductServlet extends HttpServlet {
             } else if (searchCategory.equalsIgnoreCase("name")) {
                 List<Product> products = Product.findByName(searchText1);
                 if (products == null) {
-                    request.setAttribute("message", "Products for specific name does not exist !!");
+                    request.setAttribute("message", "Products for specific name ('"+searchText1+"') does not exist !!");
                 }
                 request.getSession().setAttribute("products", products);   // put products to session scope
 
