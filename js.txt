@@ -1,0 +1,30 @@
+        <script>
+            function changeSearchText() {
+                var txt1 = document.getElementById('txt1');
+                var txt2 = document.getElementById('txt2');
+                var cat = document.getElementById('category');
+
+                //txt2.value =  cat.options[cat.selectedIndex].value;
+                var selectedValue = cat.options[cat.selectedIndex].value;
+
+                if (selectedValue === 'price') {
+                    txt2.hidden = false;
+                    txt2.type = 'number';
+                    txt2.min = 0;
+                    txt2.size = '10';
+
+                    txt1.size = '10';
+                    txt1.type = 'number';
+                    txt1.min = 0;
+                } else if (selectedValue === 'name') {
+                    txt2.hidden = true;
+                    txt1.type = 'text';
+                    txt1.size = '50';
+                } else {
+                    txt2.hidden = true;
+                    txt1.type = 'number';
+                    txt1.min = 0;
+                    txt1.size = '10';
+                }
+            }
+        </script>

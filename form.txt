@@ -1,0 +1,30 @@
+ <form action="SearchProduct" method="post">
+            <table>
+                <tr><td>Category : </td>
+                    <td>
+                        <select name="searchCategory" onchange="changeSearchText()" id="category">
+                            <option value="id" ${param.searchCategory=='id' ? 'selected': ''}>Product ID</option>
+                            <option value="name" ${param.searchCategory=='name' ? 'selected': ''}>Product Description</option>
+                            <option value="price" ${param.searchCategory=='price' ? 'selected': ''}>Price Range</option>
+                        </select>
+                    </td>
+                    <td id="caption1">&nbsp;</td>
+                    <td><input type="text" name="searchText1" id="txt1" value="${param.searchText1}" /></td>
+                    <td id="caption2">&nbsp;</td>
+                    <td><input type="text" name="searchText2" id="txt2" value="${param.searchText2}" /></td>
+                    <td>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</td><td> View : 
+                        <select name="viewBy">
+                            <option value="row" ${param.viewBy=='row' ? 'selected': ''}>List View</option>
+                            <option value="column" ${param.viewBy=='column' ? 'selected': ''}>Gallery View</option>
+                        </select>
+                    </td>
+                    <td>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</td>
+                    <td><input type="submit" value="Go"/></td>
+                </tr>
+            </table>
+        </form>
+        <c:if test="${! empty message}">
+            <table class="table" style="width: 98%;background-color: yellow;color:red">
+                <tr><td>${message}</td></tr>
+            </table>
+        </c:if>
