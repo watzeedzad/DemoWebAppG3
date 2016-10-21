@@ -26,14 +26,13 @@
     <c:if test="${products != null}">
         <table class="table">
             <c:forEach items="${products}" var="p" varStatus="vs">
-            <tr>
                 <td>
                     <img src="images/${p.productId}.jpg" width="150" height="120"><br>
                     ${p.productId}(${p.productType}),
                     Price: <fmt:formatNumber value="${p.price}" type="currency" /><br>
                     ${p.description}
                 </td>
-            </tr>
+                ${vs.count%4==0?"</tr>":""}
             </c:forEach>
         </table>
     </c:if>
