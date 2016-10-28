@@ -44,7 +44,7 @@
                 txt1.type = 'number';
                 txt1.min = 0;
                 txt1.size = '10';
-                label.innerHTML = '&nbsp:Enter product ID:&nbsp';    
+                label.innerHTML = '&nbsp:Enter product ID:&nbsp';
             }
         }
     </script>
@@ -55,7 +55,7 @@
         <%
             //List<Product> products = Product.findByPrice(100, 200);
             //pageContext.setAttribute("products", products);
-        %>
+%>
         <form action="SearchProduct" method="post">
             <table>
                 <tr><td>Category : </td>
@@ -87,17 +87,48 @@
             </table>
         </c:if>
         <c:if test="${products != null}">
-            <table class="table">
-                <c:forEach items="${products}" var="p" varStatus="vs">
-                    <td>
-                        <img src="images/${p.productId}.jpg" width="150" height="120"><br>
-                        ${p.productId}(${p.productType}),
-                        Price: <fmt:formatNumber value="${p.price}" type="currency" /><br>
-                        ${p.description}
-                    </td>
-                    ${vs.count%4==0?"</tr>":""}
-                </c:forEach>
-            </table>
+            <form action="AddToCart" method="GET">
+                <c:choose>
+                    <c:when test="${param.viewBy=='column'}">
+                        <table class="table">
+                            <tr><td colspan="3"><input type="submit" value="Add to cart."></td></tr>
+                                    <c:forEach items="${products}" var="p" varStatus="vs">
+                                <td>
+                                    <input type="checkbox" name="pid" value="${p.productId}" title="Add ${p.description} to your cart">
+                                    <img src="images/${p.productId}.jpg" width="150" height="120"><br>
+                                    ${p.productId}(${p.productType}),
+                                    Price: <fmt:formatNumber value="${p.price}" type="currency" /><br>
+                                    ${p.description}
+                                </td>
+                                ${vs.count%4==0?"</tr>":""}
+                            </c:forEach>
+                        </table>
+                    </c:when>
+                    <c:otherwise>
+                        <table class="table">
+                            <tr><td colspan="3"><input type="submit" value="Add selected product to cart."></td></tr>
+                                    <c:forEach items="${products}" var="p" varStatus="vs">
+                                <tr>
+                                    <td>
+                                        <table>
+                                            <tr>
+                                                <td><img src="images/${p.productId}.jpg" width="200" height="160"></td>
+                                                <td style="width: 10%">&nbsp;</td>
+                                                <td>${p.productId}(${p.productType})<br>
+                                                    ${p.description}<br>
+                                                    Price: <fmt:formatNumber value="${p.price}" type="currency" /><br>
+                                                    <input type="checkbox" name="pid" value="${p.productId}" title="Add ${p.description} to your cart">
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                ${vs.count%4==0?"</tr>":""}
+                            </c:forEach>
+                        </table>
+                    </c:otherwise>
+                </c:choose>
+            </form>
         </c:if>
     </body>
 </html>

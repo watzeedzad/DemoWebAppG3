@@ -22,6 +22,7 @@
             <p><a href="page2">Page2</a></p>
             <p><a href="page3">Page2</a></p>
             <p><a href="SearchCustomer">SearchCustomer</a></p>
+            <p><a href="SearchProduct">Our Products</a>
         </div>
     </body>
 </html>
