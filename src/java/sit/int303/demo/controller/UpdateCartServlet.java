@@ -7,19 +7,19 @@ package sit.int303.demo.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Enumeration;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import sit.int303.demo.model.Cart;
 
 /**
  *
- * @author int303
+ * @author pichet
  */
-@WebServlet(name = "Page1Servlet", urlPatterns = {"/Page1"})
-public class Page1Servlet extends HttpServlet {
+public class UpdateCartServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,10 +32,32 @@ public class Page1Servlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        getServletContext().getRequestDispatcher("/WEB-INF/jsp/Page1.jsp").forward(request, response);
+        HttpSession session = request.getSession();
+        if (session != null && session.getAttribute("CART") != null) {
+            Cart cart = (Cart) session.getAttribute("CART");
+            String[] deleteItem = request.getParameterValues("deleteItem");
+            if (deleteItem != null) {
+                for (int i = 0; i < deleteItem.length; i++) {
+                    cart.remove(Integer.parseInt(deleteItem[i]));
+                }
+            }
+            Enumeration<String> items = request.getParameterNames();
+            while (items.hasMoreElements()) {
+                String x = items.nextElement();
+                if (x.charAt(0) == '_') {
+                    int pid = Integer.parseInt(x.substring(1));
+                    int qty = Integer.parseInt(request.getParameter(x));
+                    if (cart.getItem(pid) != null) {
+                        cart.updateItem(pid, qty);
+                    }
+                }
+            }
+        }
+        getServletContext().getRequestDispatcher("/ViewCart.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+
     /**
      * Handles the HTTP <code>GET</code> method.
      *

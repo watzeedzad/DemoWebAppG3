@@ -18,9 +18,9 @@
         <div style="margin-left: 50px;width: 30%">
             <p> Main-Menu</p>
             <hr>
-            <p><a href="Page1">Page1</a></p>
-            <p><a href="page2">Page2</a></p>
-            <p><a href="page3">Page2</a></p>
+            <p><a href="member/Page1.jsp">Page1</a></p>
+            <p><a href="member/Page2.jsp">Page2</a></p>
+            <p><a href="member/Page3.jsp">Page2</a></p>
             <p><a href="SearchCustomer">SearchCustomer</a></p>
             <p><a href="SearchProduct">Our Products</a>
         </div>

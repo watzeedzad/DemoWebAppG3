@@ -3,23 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sit.int303.demo.controller;
+package sit.int303.practice.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author int303
+ * @author pichet
  */
-@WebServlet(name = "Page1Servlet", urlPatterns = {"/Page1"})
-public class Page1Servlet extends HttpServlet {
+public class ProcessOrderServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,7 +29,25 @@ public class Page1Servlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        getServletContext().getRequestDispatcher("/WEB-INF/jsp/Page1.jsp").forward(request, response);
+        response.setContentType("text/html;charset=UTF-8");
+        request.getSession().removeAttribute("CART");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet ProcessOrderServlet</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.flush();
+            
+            getServletContext().getRequestDispatcher("/WEB-INF/include/PageHeader.jsp?title=Checkout Completed ::").include(request, response);
+            
+            out.println("<h1 style='margin-left: 100px'> Your  order has been completed successfully </h1><br><br>");
+            out.println("<h3 style='margin-left: 100px'> Thank you ...  <a href='ProductListing.jsp'><input style='font-size: small' type='button' value='Continue Shopping'/></a></h3>");
+            out.println("</body>");
+            out.println("</html>");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

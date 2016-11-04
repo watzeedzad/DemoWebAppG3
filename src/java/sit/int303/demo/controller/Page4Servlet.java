@@ -19,7 +19,7 @@ import javax.servlet.http.HttpSession;
  * @author int303
  */
 @WebServlet(name = "Page1Servlet", urlPatterns = {"/Page1"})
-public class Page1Servlet extends HttpServlet {
+public class Page4Servlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>

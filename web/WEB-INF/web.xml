@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <filter>
+        <filter-name>AuthenticationFilter</filter-name>
+        <filter-class>sit.int303.demo.filter.AuthenticationFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AuthenticationFilter</filter-name>
+        <url-pattern>/member/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
     <servlet>
         <servlet-name>HiLowServlet</servlet-name>
         <servlet-class>sit.int303.demo.controller.HiLowServlet</servlet-class>
@@ -68,6 +78,30 @@
         <servlet-name>AddToCartServlet</servlet-name>
         <servlet-class>sit.int303.demo.controller.AddToCartServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Page2Servlet</servlet-name>
+        <servlet-class>sit.int303.demo.controller.Page2Servlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Page3Servlet</servlet-name>
+        <servlet-class>sit.int303.demo.controller.Page3Servlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Page4Servlet</servlet-name>
+        <servlet-class>sit.int303.demo.controller.Page4Servlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LogoutServlet</servlet-name>
+        <servlet-class>sit.int303.demo.controller.LogoutServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateCartServlet</servlet-name>
+        <servlet-class>sit.int303.demo.controller.UpdateCartServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CheckoutServlet</servlet-name>
+        <servlet-class>sit.int303.demo.controller.CheckoutServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HiLowServlet</servlet-name>
         <url-pattern>/HiLow</url-pattern>
@@ -110,16 +144,40 @@
         <url-pattern>/Login</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>Page1Servlet</servlet-name>
-        <url-pattern>/Page1</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>SearchProductServlet</servlet-name>
         <url-pattern>/SearchProduct</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AddToCartServlet</servlet-name>
         <url-pattern>/AddToCart</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LogoutServlet</servlet-name>
+        <url-pattern>/Logout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Page2Servlet</servlet-name>
+        <url-pattern>/member/Page2</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Page4Servlet</servlet-name>
+        <url-pattern>/member/Page4</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Page3Servlet</servlet-name>
+        <url-pattern>/member/Page3</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Page1Servlet</servlet-name>
+        <url-pattern>/member/Page1</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateCartServlet</servlet-name>
+        <url-pattern>/UpdateCart</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CheckoutServlet</servlet-name>
+        <url-pattern>/ProcessOrder</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

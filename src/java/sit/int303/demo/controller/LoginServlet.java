@@ -40,6 +40,10 @@ public class LoginServlet extends HttpServlet {
                 if (customers != null) {
                     if (customers.get(0).getZip().equals(password)) {
                         request.getSession().setAttribute("user", customers.get(0));
+                        String target = request.getParameter("target");
+                        if (target == null || target.trim().length()==0) {
+                            target = "index.jsp";
+                        }
                         getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
                         return ;
                     } else {
