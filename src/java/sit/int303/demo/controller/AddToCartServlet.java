@@ -42,7 +42,7 @@ public class AddToCartServlet extends HttpServlet {
             cart.addItem(pid);
         } catch (NumberFormatException e) {
             message = "Product must be select before Add to cart!";
-            request.setAttribute("message", message);
+            request.setAttribute("messageState", message);
             getServletContext().getRequestDispatcher("/SearchProduct").forward(request, response);
         }
         getServletContext().getRequestDispatcher("/ProductListing.jsp").forward(request, response);

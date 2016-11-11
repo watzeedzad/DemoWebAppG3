@@ -51,7 +51,7 @@
 
     <body onload="changeSearchText()">
         <jsp:include page="WEB-INF/jsp/Header.jsp?title=Product Listing"/>
-        ${message}
+        ${messageState}
         <br>
         <%
             //List<Product> products = Product.findByPrice(100, 200);
@@ -89,6 +89,10 @@
         </c:if>
         <c:if test="${products != null}">
             <form action="AddToCart" method="GET">
+                <input type="hidden" name="searchCategory" value="${param.searchCategory}"/>
+                <input type="hidden" name="viewBy" value="${param.viewBy}"/>
+                <input type="hidden" name="searchText1" value="${param.searchText1}"/>
+                <input type="hidden" name="searchText1" value="${param.searchText2}"/>
                 <c:choose>
                     <c:when test="${param.viewBy=='column'}">
                         <table class="table">
