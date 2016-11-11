@@ -31,14 +31,20 @@ public class AddToCartServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession(true);
-        if (session.getAttribute("CART") == null) {
-            session.setAttribute("CART", new Cart());
+        String message = "";
+        try {
+            HttpSession session = request.getSession(true);
+            if (session.getAttribute("CART") == null) {
+                session.setAttribute("CART", new Cart());
+            }
+            Cart cart = (Cart) session.getAttribute("CART");
+            int pid = Integer.parseInt(request.getParameter("pid"));
+            cart.addItem(pid);
+        } catch (NumberFormatException e) {
+            message = "Product must be select before Add to cart!";
+            request.setAttribute("message", message);
+            getServletContext().getRequestDispatcher("/SearchProduct").forward(request, response);
         }
-        Cart cart = (Cart) session.getAttribute("CART");
-        int pid = Integer.parseInt(request.getParameter("pid"));
-        cart.addItem(pid);
-
         getServletContext().getRequestDispatcher("/ProductListing.jsp").forward(request, response);
     }
 

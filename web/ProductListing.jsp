@@ -51,6 +51,7 @@
 
     <body onload="changeSearchText()">
         <jsp:include page="WEB-INF/jsp/Header.jsp?title=Product Listing"/>
+        ${message}
         <br>
         <%
             //List<Product> products = Product.findByPrice(100, 200);

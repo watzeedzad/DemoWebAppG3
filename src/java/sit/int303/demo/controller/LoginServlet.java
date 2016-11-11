@@ -40,11 +40,11 @@ public class LoginServlet extends HttpServlet {
                 if (customers != null) {
                     if (customers.get(0).getZip().equals(password)) {
                         request.getSession().setAttribute("user", customers.get(0));
-                        String target = request.getParameter("target");
+                        String target = "";
                         if (target == null || target.trim().length()==0) {
-                            target = "index.jsp";
+                            target = request.getParameter("target");
                         }
-                        getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+                        getServletContext().getRequestDispatcher(target).forward(request, response);
                         return ;
                     } else {
                         message = "Invalid password !!!" ;

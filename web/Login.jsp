@@ -16,7 +16,7 @@
         <jsp:include page="/WEB-INF/jsp/Header.jsp?title=G1:  Authentication :::"/>
         <div style="margin-top: 50px;width: 100%;align-items: center">
         <div style="width:400px">
-            <form action="Login" method="POST">
+            <form action="${pageContext.servletContext.contextPath}/Login" method="POST">
                 <div class="form-group">
                     <label for="exampleInputEmail1">User Name</label>
                     <input type="text" name="userName" class="form-control" placeholder="User name">
@@ -26,7 +26,7 @@
                     <input type="password" name="password" class="form-control" placeholder="Password">
                 </div>
                 <button type="submit" class="btn btn-default">Login</button>
-                <input type="hidden" name="target" value=""
+                <input type="text" name="target" value="${param.target}">
             </form>    
             <div><h3 style="color:red">${message}</h3></div>
         </div>
